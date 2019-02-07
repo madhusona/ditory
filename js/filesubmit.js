@@ -43,7 +43,7 @@ function submitcert() {
       
     }
 
-    alert("finished");
+ //   alert("finished");
 }
 
 
@@ -66,7 +66,7 @@ var loadFile = function (event) {
     
     var image = document.getElementById('certificate');
     // document.getElementById("input")
-  //  image.src = URL.createObjectURL(event.target.files[0]);
+   image.src = URL.createObjectURL(event.target.files[0]);
 
     var reader = new FileReader();
     reader.addEventListener('load',function () {
