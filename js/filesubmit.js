@@ -118,7 +118,7 @@ function init() {
          * client.
          */
         auth2 = gapi.auth2.init({
-            client_id: '840719622288-17iv02932mruclvaepvd5994pnmbpb0d.apps.googleusercontent.com',
+            client_id: '798086767693-avh53svs75dgsle00jj3bqn5m1cu3nr5.apps.googleusercontent.com',
             hosted_domain: 'karpagamtech.ac.in'
         }).then(() => {
 
