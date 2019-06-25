@@ -227,8 +227,8 @@ function submitcert() {
 
 
 
-        if (validation()) // Calling validation function
-        {
+    //    if (validation()) // Calling validation function
+    //    {
             var address = '0x57054C1C6BA9b9cAdCb8AA5D7aB06FDd8EC1A8c1';
             var hash = localStorage.getItem('filehash');
             console.log(CID + " 8 " + RID + " 8 " + hash);
@@ -256,7 +256,7 @@ function submitcert() {
 
 
 
-        }
+      //  }
 
         alert("finished");
     }
