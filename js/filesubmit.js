@@ -193,7 +193,7 @@ function verifycert() {
     var CID = document.getElementById("CertificateID").value;
     var hash = localStorage.getItem('filehash');
 
-    myContract.methods.getCertificate(CID).call({ from: '0xE678D0829b5E66104b17fEc8431F214DbB91a4aB' })
+    myContract.methods.getCertificate(CID).call({ from: '0x57054C1C6BA9b9cAdCb8AA5D7aB06FDd8EC1A8c1' })
         .then((result) => {
             var text = "";
             if (hash == result.CH)
@@ -229,7 +229,7 @@ function submitcert() {
 
         if (validation()) // Calling validation function
         {
-            var address = '0xE678D0829b5E66104b17fEc8431F214DbB91a4aB';
+            var address = '0x57054C1C6BA9b9cAdCb8AA5D7aB06FDd8EC1A8c1';
             var hash = localStorage.getItem('filehash');
             console.log(CID + " 8 " + RID + " 8 " + hash);
 
