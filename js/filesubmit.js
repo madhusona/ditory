@@ -17,7 +17,7 @@ function request(method, url) {
     });
 }
 
-request('GET', 'https://ditory.restlet.net:443/v1/certificates/')
+/*request('GET', 'https://ditory.restlet.net:443/v1/certificates/')
     .then(function (e) {
         localStorage.setItem('certificates', e.target.response);
 
@@ -29,7 +29,7 @@ request('GET', 'https://ditory.restlet.net:443/v1/certificates/')
     }, function (e) {
         console.log(e);
         // handle errors
-    });
+    });*/
 
 /*var req = new XMLHttpRequest();
 req.open('GET', 'https://ditory.restlet.net:443/v1/certificates/', true);
@@ -88,7 +88,7 @@ $("#vid1").click(function () {
     $("#ajaxchange").load("verify.html",function() { add(); });
     function add()
     {
-        var data = JSON.parse(localStorage.getItem('certificates'));
+      /*  var data = JSON.parse(localStorage.getItem('certificates'));
         data.forEach((cert) => {
         var answer = "Certificate Id: " + cert.cid + "\nTransaction Hash: " + cert.th;
         console.log(answer);
@@ -96,7 +96,7 @@ $("#vid1").click(function () {
         $("#issuedcert").append(certapp);        
         console.log(certapp);
 
-    })
+    })*/
     }
     
 });
@@ -193,10 +193,10 @@ function verifycert() {
     var CID = document.getElementById("CertificateID").value;
     var hash = localStorage.getItem('filehash');
 
-    myContract.methods.getCertificate(CID).call({ from: '0x57054C1C6BA9b9cAdCb8AA5D7aB06FDd8EC1A8c1' })
+    myContract.methods.getCertificate(CID).call({ from: '0xE678D0829b5E66104b17fEc8431F214DbB91a4aB' })
         .then((result) => {
             var text = "";
-            if (hash == result.CH)
+            if (hash == result[1])
                 text = "original certificate";
             else
                 text = "fake certificate"
@@ -205,7 +205,7 @@ function verifycert() {
             $('#myModal').modal('show')
             console.log(result);
             console.log("west");
-            console.log(result.CH);
+            console.log(result[1]);
         }).catch((err) => {
             console.log(err);
         });
@@ -238,10 +238,10 @@ function submitcert() {
             // console.log(myContract.methods.createCertificate(CID,RID,address,hash).send({from: '0xE678D0829b5E66104b17fEc8431F214DbB91a4aB'}));
 
             $("#checking").append("processing! ");
+           
 
 
-
-            myContract.methods.createCertificate(CID, RID, address, hash).send({ from: '0x57054C1C6BA9b9cAdCb8AA5D7aB06FDd8EC1A8c1' })
+            myContract.methods.setCertificate(CID,hash).send({ from:'0xE678D0829b5E66104b17fEc8431F214DbB91a4aB' })
                 .on('transactionHash', (hash) => {
                     // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
                     $('#progress').remove();
@@ -249,12 +249,6 @@ function submitcert() {
                     $(".modal-body").append(hash);
                     $('#myModal').modal('show')
                 });
-
-
-
-
-
-
 
         }
 
@@ -288,7 +282,7 @@ function validation() {
     var image = document.getElementById('customFile').value;
     // var emailReg = /^([w-.]+@([w-]+.)+[w-]{2,4})?$/;
 
-    var data = JSON.parse(localStorage.getItem('certificates'));
+   // var data = JSON.parse(localStorage.getItem('certificates'));
 
     var idcheck = false;
 
@@ -337,4 +331,3 @@ var loadFile = function (event) {
     reader.readAsBinaryString(document.getElementById("customFile").files[0]);
 
 };
-
